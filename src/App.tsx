@@ -1,24 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Editor from './ui/Editor';
+import FormPreview from './ui/FormPreview';
+
+type Field = {
+  id: string;
+  type: string;
+  label: string;
+  required?: boolean;
+  placeholder?: string;
+  options?: { value: string; label: string }[];
+  validation?: { pattern: string; message: string };
+};
+
+type FormData = {
+  formTitle: string;
+  formDescription: string;
+  fields: Field[];
+};
 
 function App() {
+  const [newError, setError] = useState<string[] | null>(null);
+  const [formData, setFormData] = useState<FormData | null>(null); // Remove `object`
+
+  console.log("formData", formData);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className=" flex max-lg:flex-col lg:flex-row bg-black h-[100vh]">
+      <div className="w-full lg:w-1/2 bg-black">
+        <Editor setError={setError} setFormData={setFormData} />
+      </div>
+      <div className="w-full lg:w-1/2 bg-black mt-4 lg:mt-0">
+        <FormPreview newError={newError} formData={formData} />
+      </div>
     </div>
   );
 }
