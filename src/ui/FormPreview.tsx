@@ -27,7 +27,7 @@ const FormPreview: React.FC<FormPreviewProps> = ({ newError, formData }) => {
   const [formValues, setFormValues] = useState<Record<string, string>>({});
   const [backdropOpen, setBackdropOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [successMessage, setSuccessMessage] = useState(''); // Success message state
+  const [successMessage, setSuccessMessage] = useState('');  
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { id, value } = e.target;
@@ -39,16 +39,16 @@ const FormPreview: React.FC<FormPreviewProps> = ({ newError, formData }) => {
     setLoading(true);
     setBackdropOpen(true);
 
-    // Simulate loading delay (e.g., form submission or API call)
+    
     setTimeout(() => {
       setLoading(false);
-      setSuccessMessage('Response has been submitted successfully!'); // Set the success message
+      setSuccessMessage('Response has been submitted successfully!');  
     }, 1000);
   };
 
   return (
     <div className="bg-gray-900 p-6 shadow-lg md:h-[100vh] md:overflow-y-scroll md:scrollbar-w-0">
-      {/* Error Display */}
+     
       {newError && newError.length > 0 ? (
         <ul>
           <h4 className="text-red-500 mt-2">ERRORS</h4>
@@ -70,7 +70,7 @@ const FormPreview: React.FC<FormPreviewProps> = ({ newError, formData }) => {
                     <label htmlFor={field.id} className="block mb-2 font-medium">
                       {field.label} {field.required && <span className="text-red-500">*</span>}
                     </label>
-                    {/* Render input based on field type */}
+                   
                     {field.type === 'text' || field.type === 'email' || field.type === 'textarea' ? (
                       React.createElement(field.type === 'textarea' ? 'textarea' : 'input', {
                         id: field.id,
@@ -115,7 +115,7 @@ const FormPreview: React.FC<FormPreviewProps> = ({ newError, formData }) => {
                     ) : null}
                   </div>
                 ))}
-                {/* Submit Button */}
+                
                 <button
                   type="submit"
                   className="w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition"
@@ -124,7 +124,7 @@ const FormPreview: React.FC<FormPreviewProps> = ({ newError, formData }) => {
                 </button>
               </form>
 
-              {/* Backdrop with Preview */}
+               
               <Backdrop
                 sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
                 open={backdropOpen}

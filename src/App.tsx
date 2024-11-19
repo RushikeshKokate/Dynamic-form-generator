@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import './App.css';
-import Editor from './ui/Editor';
-import FormPreview from './ui/FormPreview';
+import React, { useState } from "react";
+import "./App.css";
+import OurEditor from "./ui/OurEditor";
+import FormPreview from "./ui/FormPreview";
 
 type Field = {
   id: string;
@@ -21,14 +21,14 @@ type FormData = {
 
 function App() {
   const [newError, setError] = useState<string[] | null>(null);
-  const [formData, setFormData] = useState<FormData | null>(null); // Remove `object`
+  const [formData, setFormData] = useState<FormData | null>(null);
 
   console.log("formData", formData);
 
   return (
     <div className=" flex max-lg:flex-col lg:flex-row bg-black h-[100vh]">
       <div className="w-full lg:w-1/2 bg-black">
-        <Editor setError={setError} setFormData={setFormData} />
+        <OurEditor setError={setError} setFormData={setFormData} />
       </div>
       <div className="w-full lg:w-1/2 bg-black mt-4 lg:mt-0">
         <FormPreview newError={newError} formData={formData} />
